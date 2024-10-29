@@ -1,5 +1,4 @@
 '''Registering and executing commands file'''
-
 import logging
 from abc import ABC, abstractmethod
 

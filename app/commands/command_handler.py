@@ -1,5 +1,8 @@
 '''Registering and executing commands file'''
 import logging
+import logging.config
+logging.config.fileConfig('logging.conf')
+
 from abc import ABC, abstractmethod
 
 class Command(ABC):

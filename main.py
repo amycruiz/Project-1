@@ -1,6 +1,9 @@
 import os
 import sys
 import logging
+import logging.config
+logging.config.fileConfig('logging.conf')
+
 from app.plugins.add import AddCommand
 from app.plugins.subtract import SubtractCommand
 from app.plugins.multiply import MultiplyCommand
@@ -26,10 +29,10 @@ def main():
             "subtract": SubtractCommand(),
             "multiply": MultiplyCommand(),
             "divide": DivideCommand(),
-            "saveHistory": SaveHistory(),
-            "loadHistory": LoadHistory(),
-            "clearHistory": ClearHistory(),
-            "deleteHistory": DeleteHistory(),
+            "savehistory": SaveHistory(),
+            "loadhistory": LoadHistory(),
+            "clearhistory": ClearHistory(),
+            "deletehistory": DeleteHistory(),
             "menu": MenuCommmand(),
         }
 
@@ -46,6 +49,7 @@ def main():
         elif command in {"exit"}:
             logging.info("Calculator application exited by user.")
             print("Exiting calculator... Goodbye!")
+            sys.exit(0)
         else:
             logging.warning(f"Unknown command entered: {command}")
             print("Unknown command. Type 'menu' for the list of commands.")

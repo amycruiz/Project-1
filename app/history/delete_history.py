@@ -1,27 +1,31 @@
 '''Delete history command file'''
 import pandas as pd
-import logging
 import os
+import logging
+import logging.config
+logging.config.fileConfig('logging.conf')
 
 class DeleteHistory:
-    def __init__(self, historyFile="history.csv"):
+    def __init__(self, historyFile="data/history_file.csv"):
+        os.makedirs("data", exist_ok=True)
         self.historyFile = historyFile
 
-    def execute(self, index):
-        if os.path.exists(self.historyFile):
-            try:
+    def execute(self):
+        try:
+            if os.path.exists(self.historyFile):
                 history_df = pd.read_csv(self.historyFile)
-                if index < 0 or index >= len(history_df):
-                    raise IndexError("Index provided is out of range.")
-                
-                history_df = history_df.drop(index)
-                history_df.to_csv(self.historyFile, index=False)
-                logging.info(f"Deleted history entry at index {index}.")
-                print(f"Deleted history entry at index {index}.")
-
-            except IndexError:
-                logging.error("Index is out of range for the delete operation.")
-                print("Error: Index is out of range.")
-        else:
-            logging.warning("There is no history to delete from.")
-            print("No history file found.")
+                if not history_df.empty:
+                    history_df = history_df[:-1]
+                    history_df.to_csv(self.historyFile, index=False)
+                    logging.info("Last entry deleted from history.")
+                    print("Last calculation undone.")
+                else:
+                    logging.warning("No entries to delete in history.")
+                    print("No entries in history to delete.")
+            else:
+                logging.warning("No history file to delete from.")
+                print("No history file found to delete from.")
+        
+        except Exception as e:
+            logging.error(f"Error deleting history: {e}")
+            print("Failed to delete history.")

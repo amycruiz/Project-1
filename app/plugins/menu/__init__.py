@@ -1,4 +1,7 @@
 import logging
+import logging.config
+logging.config.fileConfig('logging.conf')
+
 from app.commands.command_handler import Command
 
 class MenuCommmand(Command):
@@ -10,10 +13,10 @@ class MenuCommmand(Command):
                 "subtract [num1] [num2] - Subtract two numbers\n"
                 "multiply [num1] [num2] - Multiply two numbers\n"
                 "divide [num1] [num2] - Divide two numbers\n"
-                "saveHistory - Save calculation history\n"
-                "loadHistory - Load calculation history\n"
-                "clearHistory - Clear all history\n"
-                "deleteHistory - Delete a specific history entry\n"
+                "savehistory [expression] [result] - Save a specific calculation to history\n"
+                "loadhistory - Load saved calculation history\n"
+                "clearhistory - Clear all saved calculation history\n"
+                "deletehistory - Delete/undo your last saved calculation history entry\n"
                 "menu - Show a menu of all available commands\n"
                 "exit - Exit the calculator"
                 )

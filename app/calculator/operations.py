@@ -1,5 +1,7 @@
 '''Operations file'''
 import logging
+import logging.config
+logging.config.fileConfig('logging.conf')
 
 def add(a, b):
     result = a + b

@@ -1,11 +1,11 @@
-'''Delete history command file'''
+'''Undo history command file'''
 import pandas as pd
 import os
 import logging
 import logging.config
 logging.config.fileConfig('logging.conf')
 
-class DeleteHistory:
+class UndoHistory:
     def __init__(self, historyFile="data/history_file.csv"):
         os.makedirs("data", exist_ok=True)
         self.historyFile = historyFile

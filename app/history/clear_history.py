@@ -12,7 +12,7 @@ class ClearHistory:
 
     def execute(self):
         try:
-            empty_df = pd.DataFrame(columns=["Expression", "Result"])
+            empty_df = pd.DataFrame(columns=["Expression", "First number", "Second number", "Result"])
             empty_df.to_csv(self.historyFile, index=False)
 
             logging.info("History cleared sucessfully, headers retained.")

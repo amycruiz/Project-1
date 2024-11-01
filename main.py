@@ -10,13 +10,13 @@ from app.plugins.multiply import MultiplyCommand
 from app.plugins.divide import DivideCommand
 from app.plugins.menu import MenuCommmand
 from app.history.clear_history import ClearHistory
-from app.history.delete_history import DeleteHistory
+from app.history.undo_history import UndoHistory
 from app.history.load_history import LoadHistory
 from app.history.save_history import SaveHistory
 
 def main():
     logging.info("Calculator application started.")
-    print("Welcome to Amy's Simple Python Calculator!")
+    print("Welcome to Amy's Advanced Python Calculator!")
     print("Type 'menu' to see all available commands.")
 
     while True:
@@ -32,7 +32,7 @@ def main():
             "savehistory": SaveHistory(),
             "loadhistory": LoadHistory(),
             "clearhistory": ClearHistory(),
-            "deletehistory": DeleteHistory(),
+            "undohistory": UndoHistory(),
             "menu": MenuCommmand(),
         }
 

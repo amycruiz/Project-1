@@ -1,2 +1,2 @@
-Expression,Result
-add,7
+Expression,First number,Second number,Result
+add,3,4,7.0

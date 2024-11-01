@@ -2,7 +2,7 @@ import os
 import sys
 import logging
 import logging.config
-logging.config.fileConfig('logging.conf')
+from dotenv import load_dotenv
 
 from app.plugins.add import AddCommand
 from app.plugins.subtract import SubtractCommand
@@ -14,9 +14,21 @@ from app.history.undo_history import UndoHistory
 from app.history.load_history import LoadHistory
 from app.history.save_history import SaveHistory
 
+def load_environment():
+    load_dotenv()
+
+    db_user = os.getenv('DATABASE_USERNAME')
+    env = os.getenv('ENVIRONMENT')
+    secret_key = os.getenv('MY_SECRET_KEY')
+
+    print(f"User: {db_user} | Environment: {env} | Secret key: {'*' * len(secret_key)}")
+    logging.info("Environment variables loaded successfully. Database user and environment displayed.")
+    logging.info("Secret key is also displayed but hidden using * for security.")
+
+
 def main():
     logging.info("Calculator application started.")
-    print("Welcome to Amy's Advanced Python Calculator!")
+    print("Welcome to Amy's Advanced Python Calculator ^.^!")
     print("Type 'menu' to see all available commands.")
 
     while True:
@@ -43,8 +55,11 @@ def main():
                 if result is not None:
                     print(result)
                     logging.info(f"Command {command} executed successfully. Result: {result}")
+            except TypeError as e:
+                logging.error(f"Error executing {command} with arguments {args}: Missing or invalid arguments. Details: {e}")
+                print(f"Error: Missing or invalid arguments for the command '{command}'. Type 'menu' to ensure proper arguments are provided.")
             except Exception as e:
-                logging.error(f"Error executing command {command} with arguments {args}: {e}")
+                logging.error(f"Error executing command {command} with the arguments {args}: {e}")
                 print(f"Error: {e}")
         elif command in {"exit"}:
             logging.info("Calculator application exited by user.")
@@ -55,4 +70,5 @@ def main():
             print("Unknown command. Type 'menu' for the list of commands.")
 
 if __name__ == "__main__":
+    load_environment()
     main()

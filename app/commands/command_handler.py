@@ -22,11 +22,11 @@ class CommandHandler:
     def executeCommand(self, commandName: str, *args):
         '''Execute a command by name, with optional arguments.'''
         try:
-            logging.info(f"Executing command: {commandName} with arguments: {args}")
+            logging.info(f"Executing command: {commandName} with the arguments: {args}")
             self.commands[commandName].execute(*args)
         except KeyError: 
-            logging.error(f"Command '{commandName}' not found.")
-            return f"Command '{commandName}' not found."
+            logging.error(f"The command '{commandName}' was not found.")
+            return f"Oops! The command '{commandName}' is not recognized. Please type 'menu' to see a list of available commands."
         except Exception as e:
             logging.error(f"Error executing command '{commandName}': {e}")
-            return f"Error executing command '{commandName}': {e}"
+            return f"An error occured while trying to execute command '{commandName}'. Please check your input and try again. Error details: {e}"

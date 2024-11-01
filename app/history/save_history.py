@@ -13,19 +13,32 @@ class SaveHistory:
             pd.DataFrame(columns=["Expression", "First number", "Second number", "Result"]).to_csv(self.historyFile, index=False)
 
     def execute(self, expression, num1, num2, result):
-        savedData = {"Expression": expression, 
+        savedData = {"Expression": expression.strip(), 
                      "First number": num1, 
                      "Second number": num2, 
                      "Result": result}
         try:
             history_df = pd.read_csv(self.historyFile)
+
+            history_df["Expression"] = history_df["Expression"].str.strip()
+            history_df["First number"] = history_df["First number"].astype(type(num1))
+            history_df["Second number"] = history_df["Second number"].astype(type(num2))
+            history_df["Result"] = history_df["Result"].astype(type(result))
+
+            duplicate = history_df.loc[
+                (history_df["Expression"] == savedData["Expression"]) &
+                (history_df["First number"] == savedData["First number"]) &
+                (history_df["Second number"] == savedData["Second number"]) &
+                (history_df["Result"] == savedData["Result"])
+                ]
             
-            if not any((history_df["Expression"] == expression) & (history_df["First number"] == num1) & (history_df["Second number"] == num2) & (history_df["Result"] == result)):
+            if duplicate.empty:
                 history_df = pd.concat([history_df, pd.DataFrame([savedData])], ignore_index=True)
                 history_df.to_csv(self.historyFile, index=False)
-                logging.info(f"Calculation saved: {expression} {num1} {num2}= {result}")
+                logging.info(f"Calculation saved: {expression} {num1} {num2} = {result}")
                 print(f"Saved history: {expression} {num1} {num2} = {result}")
             else:
+                logging.info(f"Calculation {expression} {num1} {num2} {result} has already been saved in history file.")
                 print("This calculation has already been saved.")
 
         except Exception as e:

@@ -18,14 +18,14 @@ class UndoHistory:
                     history_df = history_df[:-1]
                     history_df.to_csv(self.historyFile, index=False)
                     logging.info("Last entry deleted from history.")
-                    print("Last calculation undone.")
+                    return "Last calculation undone."
                 else:
                     logging.warning("No entries to delete in history.")
-                    print("No entries in history to delete.")
+                    return "No entries in history to delete."
             else:
                 logging.warning("No history file to delete from.")
-                print("No history file found to delete from.")
+                return "No history file found to delete from."
         
         except Exception as e:
             logging.error(f"Error deleting history: {e}")
-            print("Failed to delete history.")
+            return "Failed to delete history."

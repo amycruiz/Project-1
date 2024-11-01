@@ -14,11 +14,10 @@ class LoadHistory:
         if os.path.exists(self.historyFile):
             history_df = pd.read_csv(self.historyFile)
             if history_df.empty:
-                print("History is empty.")
+                return "History is empty."
             else:
-                print("Calculation History:")
-                print(history_df.to_string(index=False))
-            logging.info("History has loaded successfully.")
+                logging.info("History has loaded successfully.")
+                return f"Calculation History:\n{history_df.to_string(index=False)}"
         else:
             logging.warning("No history file found to load.")
-            print("No history file found.")
+            return "No history file found."

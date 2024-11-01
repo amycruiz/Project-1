@@ -16,8 +16,8 @@ class ClearHistory:
             empty_df.to_csv(self.historyFile, index=False)
 
             logging.info("History cleared sucessfully, headers retained.")
-            print("History cleared successfully, only headers remain.")
+            return "History cleared successfully, only headers remain."
         
         except Exception as e:
             logging.error(f"Error clearing history: {e}")
-            print("Failed to clear history.")
+            return "Failed to clear history."

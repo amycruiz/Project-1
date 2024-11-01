@@ -36,11 +36,11 @@ class SaveHistory:
                 history_df = pd.concat([history_df, pd.DataFrame([savedData])], ignore_index=True)
                 history_df.to_csv(self.historyFile, index=False)
                 logging.info(f"Calculation saved: {expression} {num1} {num2} = {result}")
-                print(f"Saved history: {expression} {num1} {num2} = {result}")
+                return f"Saved history: {expression} {num1} {num2} = {result}"
             else:
                 logging.info(f"Calculation {expression} {num1} {num2} {result} has already been saved in history file.")
-                print("This calculation has already been saved.")
+                return "This calculation has already been saved."
 
         except Exception as e:
             logging.error(f"Error saving history: {e}")
-            print("Failed to save history.")
+            return "Failed to save history."

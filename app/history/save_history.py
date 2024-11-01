@@ -13,10 +13,13 @@ class SaveHistory:
             pd.DataFrame(columns=["Expression", "First number", "Second number", "Result"]).to_csv(self.historyFile, index=False)
 
     def execute(self, expression, num1, num2, result):
-        savedData = {"Expression": expression.strip(), 
-                     "First number": num1, 
-                     "Second number": num2, 
-                     "Result": result}
+        savedData = {
+            "Expression": expression.strip(), 
+            "First number": num1, 
+            "Second number": num2, 
+            "Result": result  
+        }
+
         try:
             history_df = pd.read_csv(self.historyFile)
 

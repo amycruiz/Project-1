@@ -19,10 +19,9 @@ def multiply(a, b):
     return result
 
 def divide(a, b):
-    try:
-        result = a / b
-        logging.info(f"The division of {a} / {b} = {result}")
-        return result
-    except ZeroDivisionError:
+    if b == 0:
         logging.error("Attempted division by zero.")
-        return "Error: Division by zero is not allowed, since it is undefined."
+        raise ZeroDivisionError("Error: Division by zero is not allowed, since it is undefined.")
+    result = a / b
+    logging.info(f"The division of {a} / {b} = {result}")
+    return result

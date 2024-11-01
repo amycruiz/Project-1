@@ -9,4 +9,4 @@ def test_subtract_command():
 def test_subtract_command_with_negative_numbers():
     command = SubtractCommand()
     result = command.execute(-25, 5)
-    assert result == -20.0
+    assert result == -30.0

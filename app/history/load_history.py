@@ -17,7 +17,7 @@ class LoadHistory:
                 return "History is empty."
             else:
                 logging.info("History has loaded successfully.")
-                return f"Calculation History:\n{history_df.to_string(index=False)}"
+                return "Calculation History:\n" + history_df.to_csv(index=False, header=True)
         else:
             logging.warning("No history file found to load.")
-            return "No history file found."
+            return "No history file found to load."

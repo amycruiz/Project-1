@@ -57,19 +57,24 @@ def test_clear_history_successful(clear_history_instance):
 
 def test_load_history_with_data(load_history_instance):
     test_data = pd.DataFrame({
-        "Expression": ["add 2 2", "subtract 5 3"],
+        "Expression": ["add", "subtract"],
         "First number": [2, 5],
         "Second number": [2, 3],
         "Result": [4.0, 2.0]
     })
     test_data.to_csv(test_history_file, index=False)
 
+    print("Contents of the history file after saving:")
+    with open(test_history_file, 'r') as f:
+        print(f.read())
+        
     result = load_history_instance.execute()
-    expected_output = "Calculation History:\nExpression,First number,Second number,Result\nadd,2,2,4.0\nsubtract,5,3,2.0"
+    expected_output = "Calculation History:\nExpression,First number,Second number,Result\nadd,2,2,4.0\nsubtract,5,3,2.0\n"
     assert result == expected_output
 
 def test_load_history_empty_file(load_history_instance):
-    pd.DataFrame(columns=["Expression", "First number", "Second number", "Result"].to_csv(test_history_file), index=False)
+    empty_data = pd.DataFrame(columns=["Expression", "First number", "Second number", "Result"])
+    empty_data.to_csv(test_history_file, index=False)
     result = load_history_instance.execute()
     assert result == "History is empty."
 
@@ -89,7 +94,7 @@ def test_save_history_successful(save_history_instance):
     saved_df = pd.read_csv(test_history_file)
     assert not saved_df.empty
     assert len(saved_df) == 1
-    assert saved_df.iloc[0]["Expression"] == "add" #add 2 2
+    assert saved_df.iloc[0]["Expression"] == "add"
     assert saved_df.iloc[0]["First number"] == 2
     assert saved_df.iloc[0]["Second number"] == 2
     assert saved_df.iloc[0]["Result"] == 4.0
@@ -131,6 +136,9 @@ def test_undo_sucessful(undo_history_instance):
     assert history_df.empty
 
 def test_undo_empty_history(undo_history_instance):
+    empty_data = pd.DataFrame(columns=["Expression", "First number", "Second number", "Result"])
+    empty_data.to_csv(test_history_file, index=False)
+
     result = undo_history_instance.execute()
     assert result == "No entries in history to delete."
 
@@ -138,3 +146,8 @@ def test_undo_history_file_not_found():
     instance = UndoHistory(historyFile="data/non_existent_history_file.csv")
     result = instance.execute()
     assert result == "No history file found to delete from."
+
+def cleaup():
+    yield
+    if os.path.exists(test_history_file):
+        os.remove(test_history_file)

@@ -12,19 +12,20 @@ class UndoHistory:
 
     def execute(self):
         try:
-            if os.path.exists(self.historyFile):
-                history_df = pd.read_csv(self.historyFile)
-                if not history_df.empty:
-                    history_df = history_df[:-1]
-                    history_df.to_csv(self.historyFile, index=False)
-                    logging.info("Last entry deleted from history.")
-                    return "Last calculation undone."
-                else:
-                    logging.warning("No entries to delete in history.")
-                    return "No entries in history to delete."
-            else:
+            if not os.path.exists(self.historyFile):
                 logging.warning("No history file to delete from.")
                 return "No history file found to delete from."
+            
+            history_df = pd.read_csv(self.historyFile)
+            
+            if history_df.empty:
+                logging.warning("No entries to delete in history.")
+                return "No entries in history to delete."
+            
+            history_df = history_df[:-1]
+            history_df.to_csv(self.historyFile, index=False)
+            logging.info("Last entry deleted from history.")
+            return "Last calculation undone."
         
         except Exception as e:
             logging.error(f"Error deleting history: {e}")

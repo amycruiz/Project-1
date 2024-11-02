@@ -4,6 +4,18 @@ import logging
 import logging.config
 from dotenv import load_dotenv
 
+log_directory = 'logs'
+log_file = os.path.join(log_directory, 'app.log')
+os.makedirs(log_directory, exist_ok=True)
+if not os.path.exists(log_file):
+    open(log_file, 'w').close()
+
+logging.basicConfig(
+    filename=log_file,
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
 from app.plugins.add import AddCommand
 from app.plugins.subtract import SubtractCommand
 from app.plugins.multiply import MultiplyCommand

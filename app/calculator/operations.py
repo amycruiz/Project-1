@@ -21,7 +21,7 @@ def multiply(a, b):
 def divide(a, b):
     if b == 0:
         logging.error("Attempted division by zero.")
-        raise ZeroDivisionError("Error: Division by zero is not allowed, since it is undefined.")
+        raise ZeroDivisionError("Division by zero is not allowed, since it is undefined.")
     result = a / b
     logging.info(f"The division of {a} / {b} = {result}")
     return result

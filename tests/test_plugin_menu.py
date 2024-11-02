@@ -1,11 +1,13 @@
-import pytest
+'''Menu plugin test file'''
 from app.plugins.menu import MenuCommmand
 
 def menu_command_test ():
+    '''Tests menu command plugin'''
     return MenuCommmand()
 
 def returns_expected_menu_test(menu_command):
-    expectedOutput = (
+    '''Tests if menu command execution is done as expected'''
+    expected_output = (
         "Available commands:\n"
         "add [num1] [num2] - Add two numbers\n"
         "subtract [num1] [num2] - Subtract two numbers\n"
@@ -18,4 +20,4 @@ def returns_expected_menu_test(menu_command):
         "menu - Show a menu of all available commands\n"
         "exit - Exit the calculator"
     )
-    assert menu_command.execute() == expectedOutput
+    assert menu_command.execute() == expected_output

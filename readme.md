@@ -18,19 +18,22 @@ Welcome to my Python-based calculator that supports  basic arithmetic operations
 Assuming you have linux or ubuntu running, type in the following commands:
 - mkdir (folder name)
 - cd (folder name made from the above command)
-From completing these commands you have created your folder and should be currently inside of it. Now you need to set up your virtual environment and iniitialize git. In order to do so you must type in the following commands: 
-- git init 
-- virtualenv -p python3 my_env
-- source my_env/bin/activate
+From completing these commands you have created your folder and should be currently inside of it. Now you need to set up your virtual environment and iniitialize git. In order to do so you must type in the following commands:
+- ```bash
+  git init 
+  virtualenv -p python3 my_env
+  source my_env/bin/activate
 These commands should have intialized git on your folder and also activated your virtual environment called 'my_env'.
 
 2. **Clone the Repository**:
 Once you've set up the basics you can now clone my repository. This can be done with the command below:
-- bash git clone https://github.com/amycruiz/Project-1.git
+- ```bash
+  git clone https://github.com/amycruiz/Project-1.git
 
 3. **Install Dependencies**:
 Once you've cloned my repository you must now ensure you have all the dependencies downloaded. You can do so by running the following command:
-- pip install -r requirements.txt
+- ```bash
+  pip install -r requirements.txt
 
 # Project Overview
 My command-line interface application is designed to be user-friendly focusing on:
@@ -41,25 +44,30 @@ My command-line interface application is designed to be user-friendly focusing o
 
 # Usage Examples
 To start the application (assuming you have completed the previous steps successfully) enter the command: 
-- python main.py
+- ```bash 
+  python main.py
 
 To use the basic operations of the application you can type:
-- add 3 5 | add [num1] [num2] | to add two numbers
-- subtract 8 3 | subtract [num1] [num2] | to subtract two numbers
-- multiply 4 7 | multiply [num1] [num2] | to multiply two numbers
-- divide 9 3 | divide [num1] [num2] to divide two numbers
+- ```bash
+  add 3 5 | add [num1] [num2] | to add two numbers
+  subtract 8 3 | subtract [num1] [num2] | to subtract two numbers
+  multiply 4 7 | multiply [num1] [num2] | to multiply two numbers
+  divide 9 3 | divide [num1] [num2] to divide two numbers
 
 In order to use the history management features you can type:
-- savehistory [expression] [num1] [num2] [result] | to save a specific calculation to history
-- loadhistory | to load any saved calculation history
-- clearhistory | to clear all saved calculation history  
-- undohistory | to undo your last saved calculation history entry  
+- ```bash
+  savehistory [expression] [num1] [num2] [result] | to save a specific calculation to history
+  loadhistory | to load any saved calculation history
+  clearhistory | to clear all saved calculation history  
+  undohistory | to undo your last saved calculation history entry  
 
 To simply see a list of all the avaliable commands you can type the command:
-- menu
+- ```bash
+  menu
 
 To exit the application entirely you can type the command: 
-- exit
+- ```bash
+  exit
 
 Check out this [video recording](amys_calculator.mp4) where I walk through my application and its features!
 
@@ -80,7 +88,7 @@ Check out this [video recording](amys_calculator.mp4) where I walk through my ap
 5. Integrated logging with each command and incorporated user input for command executions, refining the main command menu.
 
 **History Management Features**
-6. Added detailed logging configurations across files, refined the save_history.py file for correct functionality, and ensured that history commands were correctly invoked by the main CLI.
+6. Added detailed logging configurations across files, refined the save_history.py file for correct functionality, and ensured that history commands were correctly invoked by the main command line interface.
 
 **Test Coverage and Duplicate Check**
 7. Replaced all print statements with return statements, facilitating more testable functions, and added unit tests for each history functionality.

@@ -26,12 +26,11 @@ These commands should have intialized git on your folder and also activated your
 
 2. **Clone the Repository**:
 Once you've set up the basics you can now clone my repository. This can be done with the command below:
-    ```bash
-- git clone https://github.com/amycruiz/Project-1.git
+    ```bash git clone https://github.com/amycruiz/Project-1.git
 
 3. **Install Dependencies**:
 Once you've cloned my repository you must now ensure you have all the dependencies downloaded. You can do so by running the following command:
-- pip install -r requirements.txt
+    ```bash pip install -r requirements.txt
 
 # Project Overview
 My command-line interface application is designed to be user-friendly focusing on:
@@ -42,7 +41,7 @@ My command-line interface application is designed to be user-friendly focusing o
 
 # Usage Examples
 To start the application (assuming you have completed the previous steps successfully) enter the command: 
-- python main.py
+    ```bash python main.py
 
 To use the basic operations of the application you can type:
 - add 3 5 | add [num1] [num2] | to add two numbers
